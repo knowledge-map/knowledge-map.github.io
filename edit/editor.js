@@ -57,7 +57,7 @@ window.onload = function() {
       }
     };
 
-    request.send(/* DATA GOES HERE!! */);
+    request.send(graph.toJSON());
   };
 
   function getStorageHost(domain) {
