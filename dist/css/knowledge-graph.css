@@ -42,33 +42,3 @@ text {
 #arrowhead {
   fill: #808080 !important;
 }
-.pico-content {
-  font-family: 'Fira', sans-serif;
-}
-.pico-content > h1 {
-  font-size: 40px;
-  line-height: 52px;
-  margin-bottom: 40px;
-}
-.pico-content a {
-  font-weight: bold;
-  text-decoration: none;
-  color: #fa8072;
-}
-.pico-content a:visited {
-  color: #fcb5ad;
-}
-.pico-content a:hover {
-  text-decoration: underline;
-}
-.pico-content article {
-  color: #444444;
-}
-.pico-close {
-  height: auto !important;
-  width: auto !important;
-  padding: 5px;
-  font-size: 40px !important;
-  line-height: 20px !important;
-  background-color: transparent !important;
-}
