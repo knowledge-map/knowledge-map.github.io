@@ -12,7 +12,7 @@ window.onload = function() {
         }]
       }]
     },
-    plugins: ['editing']
+    plugins: ['editing', 'editing-modals']
   });
 
   window.graphID = '';
