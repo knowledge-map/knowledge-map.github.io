@@ -24,16 +24,23 @@ var knowledge = {
       dependencies: ["knowledge-map", "viewing"],
       content: [{
         description: "If you want to share how to do or learn something then create your own map! This concept links to an interactive demonstration that will allow you to create your own knowledge map.",
-        title: "Graph editing demo",
+        title: "Knowledge map editing demo",
         link: "/demo/edit.html"
-      }]
+      },
+	  {
+	  	description: "Edit your own knowledge map that you can share!",
+        title: "Knowledge map publishing",
+        link: "/edit"
+	  }]
     },
     {
       id: "sharing",
       name: "Sharing your own knowledge map",
       dependencies: ["creating"],
       content: [{
-        text: "Once you've created your own knowledge map you can share it in various ways. You can embed the knowledge map in your website or save it as an image.",
+        description: "Once you've created your own knowledge map you can share it by clicking 'Publish Graph'. You will be given a link that you can use to share your knwoledge map.",
+        title: "Knowledge map publishing",
+        link: "/edit"
       }]
     },
     {
