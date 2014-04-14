@@ -14443,8 +14443,7 @@ var KnowledgeGraph = function(api, config) {
   }
 
   // Create an element on the page for us to render our graph in
-  var parentElement = config.inside || 'body';
-  var element = this.element = d3.select(parentElement).append('svg');
+  var element = this.element = d3.select('body').append('svg');
 
   // Use dagre-d3 to render the graph
   var renderer = this.renderer = new dagreD3.Renderer();
@@ -14633,6 +14632,24 @@ var KnowledgeGraph = function(api, config) {
       this.element = element;
       return element;
     });
+  };
+
+  /*
+
+  Outputs the graph as a JSON object
+
+  */
+  this.toJSON = function() {
+    var json = {
+      concepts: [],
+    };
+
+    // Add all of the concepts
+    this.graph.eachNode(function(id, node) {
+      json.concepts.push(node.concept);
+    });
+
+    return JSON.stringify(json);
   };
 
   // Initialise plugins for graph.
