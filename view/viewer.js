@@ -38,7 +38,7 @@ window.onload = function() {
   function getStorageHost(domain) {
     // During development, use a local storage server. Change true to false on
     // the next line if you're not running your own storage server locally.
-    if(true && -1 !== domain.indexOf('localhost')) {
+    if(false && -1 !== domain.indexOf('localhost')) {
       return 'http://localhost:8000/';
     } else {
       return 'http://powerful-journey-6066.herokuapp.com/';
