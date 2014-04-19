@@ -15,11 +15,13 @@
     <script src="/dist/knowledge-graph.js"></script>
     <script src="/edit/editor.js"></script>
 
-    <p>Once you leave this page, you will no longer be able to edit this graph,
-    though once published, you will always be able to view it via the link.</p>
+    <p>Build your graph in the interface below. When you want to share it, click
+    on 'save' to get a URL. Once you're done editing, we recommend clicking 'publish'
+    which will freeze your graph so that nobody else can edit it.</p>
 
-    <a id="publish" onclick="publish()" href="#">Publish this graph!</a>
-    <span id="status"></span>
+    <p><a id="save" onclick="save()" href="#">Save this graph!</a></p>
+    <p id="status"></p>
+    <p><a id="publish" onclick="publish()" href="#"></a></p>
 
     <div id="graph"></div>
 

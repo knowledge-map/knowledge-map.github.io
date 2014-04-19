@@ -14562,7 +14562,8 @@ var KnowledgeGraph = function(api, config) {
   }
 
   // Create an element on the page for us to render our graph in
-  var element = this.element = d3.select('body').append('svg');
+  var inElement = config.inside || 'body'
+  var element = this.element = d3.select(inElement).append('svg');
 
   // Use dagre-d3 to render the graph
   var renderer = this.renderer = new dagreD3.Renderer();
