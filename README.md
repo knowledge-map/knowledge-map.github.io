@@ -1,3 +1,6 @@
-# knowledge-graph [![Build Status](https://travis-ci.org/knowledge-graph/knowledge-graph.svg?branch=master)](https://travis-ci.org/knowledge-graph/knowledge-graph)
+# knowledge-graph.github.io
 
 Client-side knowledge graph renderer.
+See the [main repository][] for details.
+
+ [main repository]: https://github.com/knowledge-map/cartographer
