@@ -14145,6 +14145,10 @@ function addNodeModalEvents(kg, graph, nodes) {
         // Oops.
         html += '<p>This node has no content!</p>';
       } else {
+        function article(type, header, content) {
+          return '<article class="' + type + '">' + header + '<p>' + content + '</p></article>';
+        };
+
         // Fuse content into HTML template.
         if(texts.length) {
           html += texts.map(function(content) {
@@ -14159,10 +14163,6 @@ function addNodeModalEvents(kg, graph, nodes) {
             return article('linkContent', '<input type="url" value="' + content.link + '" /><input type="text" value="' + content.title + '" />', '<textarea>' + content.description + '</textarea>');
           }).join('');
         }
-
-        function article(type, header, content) {
-          return '<article class="' + type + '">' + header + '<p>' + content + '</p></article>';
-        };
       }
       html += '<button id="addContentBtn">Add Content</button>';
       html += '<button id="saveBtn">Save</button>';
@@ -14542,7 +14542,7 @@ function drawHamburgers(graph, nodes) {
 
 /*
 
-Construct a knowledge graph object.
+Construct a knowledge map object.
 
 Accepts a single object:
   config: an object that contains the data about the graph and various other
@@ -14552,7 +14552,7 @@ Accepts a single object:
     plugins: a list of plugin names or plugin objects
 
 */
-var KnowledgeGraph = function(api, config) {
+var KnowledgeMap = function(api, config) {
   // Create the directed graph
   var graph;
   if (config && config.graph) {
@@ -14562,8 +14562,7 @@ var KnowledgeGraph = function(api, config) {
   }
 
   // Create an element on the page for us to render our graph in
-  var inElement = config.inside || 'body'
-  var element = this.element = d3.select(inElement).append('svg');
+  var element = this.element = d3.select('body').append('svg');
 
   // Use dagre-d3 to render the graph
   var renderer = this.renderer = new dagreD3.Renderer();
@@ -14797,17 +14796,17 @@ var KnowledgeGraph = function(api, config) {
 
 /*
 
-Public API for the knowledge-graph library
+Public API for the knowledge-map library
 
 */
 var api = {
   /*
 
-  Create a knowledge graph display that layouts out the entire graph.
+  Create a knowledge map display that layouts out the entire graph.
 
   */
   create: function(config) {
-    return new KnowledgeGraph(this, config);
+    return new KnowledgeMap(this, config);
   },
 
   plugins: {
@@ -14824,7 +14823,7 @@ var api = {
   }
 };
 
-global.knowledgeGraph = api; 
+global.knowledgeMap = api; 
 module.exports = api;
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
