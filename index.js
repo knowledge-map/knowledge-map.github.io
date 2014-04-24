@@ -52,7 +52,7 @@ var knowledge = {
   ]
 };
 
-knowledgeGraph.create({
+knowledgeMap.create({
   graph: knowledge,
   plugins: ['modals'],
 });

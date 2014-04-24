@@ -17,7 +17,7 @@ window.onload = function() {
             // Server returns plain text.
             var graph = JSON.parse(request.responseText);
             // We decide which plugins to use.
-            knowledgeGraph.create({
+            knowledgeMap.create({
               graph: graph,
               inside: '#graph',
               plugins: ['modals'],

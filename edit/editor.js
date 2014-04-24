@@ -1,7 +1,7 @@
 window.onload = function() {
   "use strict";
 
-  var graph = knowledgeGraph.create({
+  var graph = knowledgeMap.create({
     inside: '#graph',
     graph: {
       concepts: [{
