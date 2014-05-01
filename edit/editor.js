@@ -15,6 +15,33 @@ window.onload = function() {
     plugins: ['editing', 'editing-modals']
   });
 
+  var editGraphFrom = function() {
+    var slug = window.location.hash.substring(1);
+    if(slug) {
+      var request = new XMLHttpRequest();
+      request.open('GET', getStorageHost(window.location.origin)+slug, true);
+      request.onreadystatechange = function() {
+        if(request.readyState === XMLHttpRequest.DONE) {
+          if(request.status === 200) {
+            document.getElementById('graph').innerHTML = "";
+            // Server returns plain text.
+            var g = JSON.parse(request.responseText);
+            // We decide which plugins to use.
+            graph = knowledgeMap.create({
+              graph: g,
+              inside: '#graph',
+              plugins: ['editing', 'editing-modals'],
+            });
+            window.graphID = slug;
+          }
+        }
+      };
+      request.send();
+    }
+  };
+  window.onhashchange = editGraphFrom;
+  editGraphFrom();
+
   window.graphID = '';
   var statusEl = document.getElementById('status');
   var saveLink = document.getElementById('save');
@@ -46,6 +73,9 @@ window.onload = function() {
             statusEl.innerHTML = 'Your graph is at <a target="_blank" href="'+url+'">'+url+'</a>';
             publishLink.innerHTML = 'Publish this graph!';
             window.graphID = response.id;
+            window.onhashchange = undefined;
+            window.location.hash = '#' + response.id;
+            window.onhashchange = editGraphFrom;
             if(done) done();
           } else {
             statusEl.innerHTML =

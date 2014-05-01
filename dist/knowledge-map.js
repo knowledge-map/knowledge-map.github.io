@@ -9904,32 +9904,30 @@ function defaultTransition(selection) {
 
 // Setup dom for zooming
 function defaultZoomSetup(graph, svg) {
-  // Create an overlay for capturing mouse events
-  svg.append('rect')
-    .attr('class', 'overlay')
-    .attr('width', '100%')
-    .attr('height', '100%')
-    .style('fill', 'none')
-    .style('pointer-events', 'all');
-  
-  // Capture the zoom behaviour from the svg
-  var zoom = d3.behavior.zoom();
-  svg = svg
-    .call(zoom)
-    .append('g');
+  if (svg.select('rect.overlay').empty()) {
+    // Create an overlay for capturing mouse events that don't touch foreground
+    svg.append('rect')
+      .attr('class', 'overlay')
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .style('fill', 'none')
+      .style('pointer-events', 'all');
 
-  // On zoom apply the zoom method
-  zoom.on('zoom', this._zoom(graph, svg));
+    // Capture the zoom behaviour from the svg
+    containerSvg = svg;
+    svg = svg.append('g')
+      .attr('class', 'zoom');
+    containerSvg.call(this._zoom(graph, svg));
+  }
 
-  // New elements are added inside of the zoomable group
   return svg;
 }
 
 // By default allow pan and zoom
 function defaultZoom(graph, svg) {
-  return function() {
+  return d3.behavior.zoom().on('zoom', function() {
     svg.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')');
-  };
+  });
 }
 
 function defaultPostLayout() {
@@ -14553,16 +14551,14 @@ Accepts a single object:
 
 */
 var KnowledgeMap = function(api, config) {
+  config = config || {};
+
   // Create the directed graph
-  var graph;
-  if (config && config.graph) {
-    graph = this.graph = createGraph(config.graph);
-  } else {
-    graph = this.graph = createGraph(); 
-  }
+  var graph = this.graph = createGraph(config.graph);
 
   // Create an element on the page for us to render our graph in
-  var element = this.element = d3.select('body').append('svg');
+  var parentName = config.inside || 'body';
+  var element = this.element = d3.select(parentName).append('svg');
 
   // Use dagre-d3 to render the graph
   var renderer = this.renderer = new dagreD3.Renderer();
@@ -14745,12 +14741,6 @@ var KnowledgeMap = function(api, config) {
   this.render = function() {
     // Run the renderer
     this.renderer.run(this.graph, this.element);
-    
-    // Don't add another element for the zoom
-    this.renderer.zoomSetup(function(graph, element) {
-      this.element = element;
-      return element;
-    });
   };
 
   /*

@@ -30,7 +30,7 @@ window.onload = function() {
       };
       request.send();
     }
-  }
+  };
 
   // Force a hash change when the page loads to detect the first graph.
   window.onhashchange();
