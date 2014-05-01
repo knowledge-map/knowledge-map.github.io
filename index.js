@@ -36,7 +36,7 @@ var knowledge = {
       name: "Sharing your own knowledge map",
       dependencies: ["creating"],
       content: [{
-        description: "Once you've created your own knowledge map you can share it by clicking 'Publish Graph'. You will be given a link that you can use to share your knwoledge map.",
+        description: "Once you've created your own knowledge map you can share it by clicking 'Publish Graph'. You will be given a link that you can use to share your knowledge map.",
         title: "Knowledge map publishing",
         link: "/edit"
       }]
