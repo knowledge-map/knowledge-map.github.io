@@ -24,7 +24,7 @@ var knowledge = {
       content: [{
         description: "If you want to share how to do or learn something then create your own map! This concept links to an interactive demonstration that will allow you to create your own knowledge map.",
         title: "Knowledge map editing demo",
-        link: "https://knowledge-map.github.io/cartographer/demo/edit.html"
+        link: "/cartographer/demo/edit.html"
       }, {
         description: "Edit your own knowledge map that you can share!",
         title: "Knowledge map publishing",
